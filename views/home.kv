@@ -1,0 +1,557 @@
+#:set padx dp(15)
+#:set pady dp(20)
+
+<InfoCard@MDCard>:
+    title: ""
+    subtitle: ""
+    description: ""
+    button_text: ""
+    elevation: 6
+    spacing: dp(20)
+    radius: [dp(10)]
+    size_hint_y: None
+    padding: 0, dp(20)
+    orientation: 'vertical'
+    height: self.minimum_height
+    MDBoxLayout:
+        pos_hint: {'center_x': .5}
+        adaptive_height: True
+        orientation: 'vertical'
+        radius: [dp(10)]
+        spacing: dp(5)
+        MDLabel:
+            bold: True
+            text: root.title
+            font_style: "H6"
+            halign: "center"
+            adaptive_height: True
+            font_name: "assets/fonts/GothamRounded-Bold.ttf"
+        MDLabel:
+            text: "[color=#da4453]" + root.subtitle + "[/color]"
+            font_style: "Caption"
+            halign: "center"
+            adaptive_height: True
+            markup: True
+            font_name: "assets/fonts/NexaDemo-Light.ttf"
+    MDLabel:
+        text: root.description
+        font_style: "Caption"
+        halign: "center"
+        adaptive_height: True
+        line_height: 1.4
+        padding: dp(5), 0
+        font_name: "assets/fonts/NexaDemo-Light.ttf"
+    MDButton:
+        size_hint_x: .7
+        pos_hint: {'center_x': .5}
+        text: root.button_text
+# END InfoCard
+
+<MDButton@MDCard>:
+    size_hint_y: None
+    height: dp(35)
+    radius: [dp(7)]
+    md_bg_color: C("#da4453")
+    text: ""
+    ripple_behavior: True
+    MDLabel:
+        text: "[color=#ffffff]" + str(root.text).upper() + "[/color]"
+        markup: True
+        bold: True
+        font_size: sp(14)
+        halign: "center"
+# END MDButton
+
+<FirstCardItem@MDBoxLayout>:
+    orientation: 'vertical'
+    adaptive_height: True
+    spacing: dp(10)
+    text_color: 1,1,1
+    icon: "trophy-variant"
+    title: "-"
+    description: "-"
+    MDIcon:
+        icon: root.icon
+        theme_text_color: "Custom"
+        text_color: root.text_color
+        pos_hint: {'center_x': .5}
+        adaptive_height: True
+        halign: "center"
+        font_size: sp(45)
+    MDLabel:
+        text: root.title
+        font_style: "Subtitle1"
+        halign: "center"
+        adaptive_height: True
+        bold: True
+        font_name: "assets/fonts/GothamRounded-Bold.ttf"
+    MDLabel:
+        text: root.description
+        font_style: "Caption"
+        halign: "center"
+        line_height: 1.5
+        adaptive_height: True
+        font_name: "assets/fonts/NexaDemo-Light.ttf"
+# END FirstCardItem
+
+<MDStar@MDLabel>:
+    star: 1
+    total: None
+    markup: True
+    font_size: sp(16)
+    halign: "center"
+    adaptive_height:True
+    text:
+        "[color=#f6bb42]" + \
+        " ".join([f"[font=Icons]{I['star']}[/font]" for _ in range(root.star)]) + \
+        (" ".join([f"[font=Icons]{I['star-outline']}[/font]" for _ in range((root.total - root.star))]) if root.total else "") + \
+        "[/color]"
+# END MDStar
+
+<SecondCardItem@MDCard>:
+    orientation: 'vertical'
+    elevation: 6
+    size_hint_y: None
+    height: self.width * 1.4
+    radius: [dp(5)]
+    star: 1
+    title: ""
+    image: "assets/04.jpg"
+    FitImage:
+        size_hint: None, None
+        pos: root.pos
+        size: root.size
+        radius: [dp(5)]
+        source: root.image
+    FloatLayout:
+        MDBoxLayout:
+            orientation: 'vertical'
+            adaptive_height:True
+            pos_hint: {'center_x': .5, "y": 1}
+            spacing: dp(7)
+            padding: 0, dp(7)
+            md_bg_color: .2,.2,.2,.7
+            radius: [dp(5), dp(25), dp(5), dp(5)]
+            MDBoxLayout:
+                orientation: 'vertical'
+                adaptive_height:True
+                MDLabel:
+                    text: "[color=#ffffff]" + root.title + "[/color]"
+                    font_style: 'Subtitle1'
+                    halign: "center"
+                    bold: True
+                    markup: True
+                    adaptive_height: True
+                    font_name: "assets/fonts/GothamRounded-Bold.ttf"
+                MDStar:
+                    star: root.star
+                    total: 5
+            MDButton:
+                size_hint_x: None
+                height: dp(35)
+                width: root.width - dp(14)
+                pos_hint: {'center_x': .5}
+                text: "PURCHASE"
+# END SecondCardItem
+
+<ThirdCardItem@MDCard>:
+    orientation: 'vertical'
+    elevation: 6
+    size_hint_y: None
+    height: self.width * 1.2
+    radius: [dp(10)]
+    icon_color: C("#f6bb42")
+    icon: " "
+    title: ""
+    subtitle: ""
+    image: "assets/04.jpg"
+    FitImage:
+        size_hint: None, None
+        pos: root.pos
+        size: root.size
+        radius: [dp(10)]
+        source: root.image
+    FloatLayout:
+        MDBoxLayout:
+            orientation: 'vertical'
+            pos_hint: {'center_x': .5, "y": 1}
+            padding: dp(7), dp(7)
+            md_bg_color: .1,.1,.1,.9
+            radius: [dp(10)]
+            size_hint: None, None
+            size: root.size
+            MDIcon:
+                icon: root.icon
+                font_size: sp(50)
+                theme_text_color: "Custom"
+                text_color: root.icon_color
+            MDBoxLayout:
+            MDBoxLayout:
+                orientation: 'vertical'
+                adaptive_height:True
+                spacing: dp(3)
+                MDLabel:
+                    text: "[color=#ffffff]" + root.title + "[/color]"
+                    adaptive_height: True
+                    font_style: 'H6'
+                    markup: True
+                    font_name: "assets/fonts/GothamRounded-Bold.ttf"
+                MDLabel:
+                    text: "[color=#ffffff]" + root.subtitle + "[/color]"
+                    font_style: "Caption"
+                    markup: True
+                    adaptive_height: True
+# END ThirdCardItem
+
+<SocialMDIcon@MDIcon>:
+    icon: ""
+    user_font_size: sp(10)
+    theme_text_color: "Custom"
+    text_color: 1,1,1,1
+    size_hint: None, None
+    size: dp(35), dp(35)
+    halign: "center"
+    radius: [dp(10)]
+# END SocialMDIcon
+
+<LMDContainer@ILeftBodyTouch+MDBoxLayout>
+
+<RMDContainer@IRightBodyTouch+MDBoxLayout>
+
+<HomeMainScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        ScrollView:
+            bar_width: 0
+            always_overscroll: False
+            MDBoxLayout:
+                orientation:'vertical'
+                adaptive_height:True
+                padding: padx, pady
+                spacing: dp(30)
+                MDCard:
+                    id: banner
+                    size_hint_y: None
+                    height: self.width * .7
+                    radius: [dp(10)]
+                    elevation: 6
+                    orientation: 'vertical'
+                    FitImage:
+                        size_hint: None, None
+                        pos: banner.pos
+                        size: banner.size
+                        radius: [dp(10)]
+                        source: 'assets/04.jpg'
+                    FloatLayout:
+                        MDBoxLayout:
+                            pos_hint: {'center_x': .5, 'y': 1}
+                            adaptive_height: True
+                            orientation: 'vertical'
+                            padding: 0, dp(10)
+                            md_bg_color: 0,0,0,.7
+                            radius: [0,0,dp(10),dp(10)]
+                            spacing: dp(3)
+                            MDLabel:
+                                bold: True
+                                text: "[color=#ffffff]Elite Quality[/color]"
+                                font_style: "H6"
+                                halign: "center"
+                                adaptive_height:True
+                                markup:True
+                                font_name: "assets/fonts/GothamRounded-Bold.ttf"
+                            MDLabel:
+                                text: "[color=#ffffff]Mobile Website, App or PWA Ready.[/color]"
+                                font_style: "Caption"
+                                halign: "center"
+                                adaptive_height:True
+                                markup:True
+                                font_name: "assets/fonts/NexaDemo-Light.ttf"
+                # END CARD 1
+                InfoCard:
+                    title: "Call to Actions"
+                    subtitle: "Sticky comes Prepared for You"
+                    description:
+                        "Call to action are highly important, but we can't " + \
+                        "choose a style for you, so we created a few!"
+                    button_text: "swipe left to begin"
+                # END CARD 2
+                MDCard:
+                    size_hint_y: None
+                    height: self.minimum_height
+                    radius: [dp(10)]
+                    orientation: 'vertical'
+                    elevation: 6
+                    spacing: dp(20)
+                    padding: 0, dp(20)
+                    MDBoxLayout:
+                        pos_hint: {'center_x': .5}
+                        adaptive_height: True
+                        orientation: 'vertical'
+                        radius: [dp(10)]
+                        spacing: dp(5)
+                        MDLabel:
+                            bold: True
+                            text: "Packed with Goodies"
+                            font_style: "H6"
+                            halign: "center"
+                            adaptive_height: True
+                            font_name: "assets/fonts/GothamRounded-Bold.ttf"
+                        MDLabel:
+                            text: "[color=#da4453]The Absolute Best Products & Care for You[/color]"
+                            font_style: "Caption"
+                            halign: "center"
+                            adaptive_height: True
+                            markup: True
+                            font_name: "assets/fonts/NexaDemo-Light.ttf"
+                    MDLabel:
+                        text:
+                            "Over 10 years of Experience in Building Gorgeous " + \
+                            "Products only for you! We are Envato Elite."
+                        font_style: "Caption"
+                        font_name: "assets/fonts/NexaDemo-Light.ttf"
+                        halign: "center"
+                        adaptive_height: True
+                        line_height: 1.4
+                    MDSeparator:
+                        pos_hint: {'center_x': .5}
+                        size_hint_x: .9
+                    MDGridLayout:
+                        cols: 2
+                        padding: dp(10), dp(10)
+                        spacing: dp(10)
+                        adaptive_height:True
+                        FirstCardItem:
+                            icon: "trophy-variant"
+                            text_color: C("#f6bb42")
+                            title: "Future Proof"
+                            description:
+                                "Built to last, with the " + \
+                                "latest quality code"
+                        FirstCardItem:
+                            icon: "gauge-full"
+                            text_color: C("#da4453")
+                            title: "Powerful"
+                            description:
+                                "Speed, Features and " + \
+                                "Flexibility all in One!"
+                        FirstCardItem:
+                            icon: "check-bold"
+                            text_color: C("#8cc152")
+                            title: "Easy to Use"
+                            description:
+                                "Customers love our " + \
+                                "work for it's ease."
+                        FirstCardItem:
+                            icon: "lifebuoy"
+                            text_color: C("#4a89dc")
+                            title: "Customer Care"
+                            description:
+                                "We treat others like we " + \
+                                "want to be treated."
+                # END CARD 3
+                MDGridLayout:
+                    cols: 2
+                    padding: 0, dp(10)
+                    spacing: dp(15)
+                    adaptive_height:True
+                    SecondCardItem:
+                        star: 4
+                        title: "UltraMobile"
+                        image: "assets/02.jpg"
+                    SecondCardItem:
+                        star: 2
+                        title: "KolorMobile"
+                        image: "assets/04.jpg"
+                # END CARD 4
+                MDCard:
+                    size_hint_y: None
+                    height: self.minimum_height
+                    radius: [dp(10)]
+                    orientation: 'vertical'
+                    elevation: 6
+                    spacing: dp(20)
+                    padding: 0, dp(20)
+                    MDBoxLayout:
+                        pos_hint: {'center_x': .5}
+                        adaptive_height: True
+                        orientation: 'vertical'
+                        radius: [dp(10)]
+                        spacing: dp(5)
+                        MDLabel:
+                            bold: True
+                            text: "Care & Quality"
+                            font_style: "H6"
+                            halign: "center"
+                            adaptive_height: True
+                            font_name: "assets/fonts/GothamRounded-Bold.ttf"
+                        MDLabel:
+                            text: "[color=#da4453]No stone left unturned, no aspect overlooked.[/color]"
+                            font_style: "Caption"
+                            halign: "center"
+                            adaptive_height: True
+                            markup: True
+                            font_name: "assets/fonts/NexaDemo-Light.ttf"
+                    MDStar:
+                        star: 5
+                        font_size: sp(25)
+                    MDLabel:
+                        text:
+                            "Call to action are highly important, but we can't " + \
+                            "choose a style for you, so we created a few"
+                        font_style: "Subtitle1"
+                        halign: "center"
+                        adaptive_height: True
+                        line_height: 1.4
+                        padding: dp(10), 0
+                        font_name: "assets/fonts/NexaDemo-Light.ttf"
+                    MDButton:
+                        size_hint_x: .7
+                        pos_hint: {'center_x': .5}
+                        text: "more testimonials"
+                # END CARD 5
+                MDGridLayout:
+                    cols: 2
+                    padding: 0, dp(10)
+                    spacing: dp(15)
+                    adaptive_height:True
+                    ThirdCardItem:
+                        icon: "trophy-variant"
+                        icon_color: 0,.6,1
+                        title: "Elite Care"
+                        subtitle: "Built by the Best for You"
+                        image: "assets/02.jpg"
+                    ThirdCardItem:
+                        icon: "star"
+                        title: "Quality"
+                        subtitle: "Built with Care and Detail"
+                        image: "assets/03.jpg"
+                # END CARD 6
+                MDCard:
+                    size_hint: None, None
+                    size: root.width - dp(40), self.minimum_height
+                    pos_hint: {"center_x": .5}
+                    elevation: 10
+                    radius: [dp(10)]
+                    TwoLineAvatarIconListItem:
+                        text: "[b]Dark Mode[/b]"
+                        font_style: "Subtitle1"
+                        secondary_text: "Sticky will Remember"
+                        secondary_font_style: "Caption"
+                        divider: None
+                        padding: 0, dp(30)
+                        LMDContainer:
+                            SocialMDIcon:
+                                icon: "power-sleep"
+                                md_bg_color: C("#da4453")
+                        RMDContainer:
+                            MDSwitch:
+                                pos_hint: {'center_y': .5}
+                                on_active: app.theme_cls.theme_style = "Dark" if self.active else "Light"
+                # END CARD 7
+                InfoCard:
+                    title: "Get Sticky Today"
+                    subtitle: "Tons of Awesome Features just for You."
+                    description:
+                        "Fast, easy to use and filled with features. Get " + \
+                        "Sticky Today and give your site the Mobile Feeling " + \
+                        "it deserves."
+                    button_text: "Purchase now - $25"
+                # END CARD 8
+                MDCard:
+                    elevation: 6
+                    spacing: dp(20)
+                    radius: [dp(10)]
+                    size_hint_y: None
+                    padding: 0, dp(20)
+                    orientation: 'vertical'
+                    height: self.minimum_height
+                    MDBoxLayout:
+                        pos_hint: {'center_x': .5}
+                        adaptive_height: True
+                        orientation: 'vertical'
+                        radius: [dp(10)]
+                        spacing: dp(5)
+                        MDLabel:
+                            bold: True
+                            text: "[color=#da4453]StickyMobile[/color]"
+                            font_style: "H5"
+                            halign: "center"
+                            adaptive_height: True
+                            markup: True
+                            font_name: "assets/fonts/GothamRounded-Bold.ttf"
+                        MDLabel:
+                            text:
+                                "Made with " + \
+                                "[color=#da4453][size=18][font=Icons]{0}[/font][/size][/color]".format(I['heart']) + \
+                                " by ELYDEV"
+                            font_style: "Caption"
+                            halign: "center"
+                            adaptive_height: True
+                            markup: True
+                            font_name: "assets/fonts/NexaDemo-Light.ttf"
+                    MDLabel:
+                        text:
+                            "Powered by the best Mobile Website Developer on " + \
+                            "Envato Market. Elite Quality. Elite Products."
+                        font_style: "Caption"
+                        halign: "center"
+                        adaptive_height: True
+                        line_height: 1.4
+                        padding: dp(5), 0
+                        font_name: "assets/fonts/NexaDemo-Light.ttf"
+                    MDBoxLayout:
+                        pos_hint: {'center_x': .5}
+                        adaptive_size: True
+                        spacing: dp(5)
+                        SocialMDIcon:
+                            icon: "facebook"
+                            md_bg_color: C("#3b5998")
+                        SocialMDIcon:
+                            icon: "twitter"
+                            md_bg_color: C("#4099ff")
+                        SocialMDIcon:
+                            icon: "phone"
+                            md_bg_color: C("#27ae60")
+                        SocialMDIcon:
+                            icon: "share-variant"
+                            md_bg_color: C("#da4453")
+                        SocialMDIcon:
+                            icon: "chevron-up"
+                            md_bg_color: C("#656d78")
+                    MDSeparator:
+                        size_hint_x: .8
+                        pos_hint: {'center_x': .5}
+                    MDLabel:
+                        text: "[color=#aaaaaa]Copyright © Enabled 2021. All Rights Reserved.[/color]"
+                        font_size: sp(10)
+                        halign: "center"
+                        bold: True
+                        markup: True
+                        adaptive_height: True
+                    MDSeparator:
+                        size_hint_x: .8
+                        pos_hint: {'center_x': .5}
+                    MDBoxLayout:
+                        pos_hint: {'center_x': .5}
+                        adaptive_size: True
+                        spacing: dp(5)
+                        MDLabel:
+                            adaptive_size: True
+                            text: "[color=#da4453]Privacy Policy[/color]"
+                            font_size: sp(10)
+                            markup: True
+                        MDSeparator:
+                            orientation: 'vertical'
+                        MDLabel:
+                            adaptive_size: True
+                            text: "[color=#da4453]Terms and Conditions[/color]"
+                            font_size: sp(10)
+                            markup: True
+                        MDSeparator:
+                            orientation: 'vertical'
+                        MDLabel:
+                            adaptive_size: True
+                            text: "[color=#da4453]Back to Top[/color]"
+                            font_size: sp(10)
+                            markup: True
+                # END CARD 9
